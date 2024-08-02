@@ -1,11 +1,22 @@
-import React from "react";
-import TodoList from "./TodoList";
+import React, { useState } from "react";
 
-export default function TodoCard(props) {
+function TodoCard(props) {
   const { children, handleDeleteTodos, index, handleEditTodos } = props;
+  const [checkbox, setCheckbox] = useState(false);
+
+  function handleClickCheckbox() {
+    setCheckbox(!checkbox);
+  }
+
   return (
     <div>
       <li className="todoItem">
+        <input
+          type="checkbox"
+          onClick={() => {
+            handleClickCheckbox();
+          }}
+        ></input>
         {children}
         <div className="actionsContainer">
           <button
@@ -27,3 +38,5 @@ export default function TodoCard(props) {
     </div>
   );
 }
+
+export default TodoCard;

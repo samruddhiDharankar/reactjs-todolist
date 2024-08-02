@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import TodoCard from "./TodoCard";
 
-export default function TodoList(props) {
+function TodoList(props) {
   const { todos } = props;
+
   return (
     <ul className="main">
       {todos.map((todo, todoIndex) => {
@@ -15,3 +16,5 @@ export default function TodoList(props) {
     </ul>
   );
 }
+
+export default TodoList;
