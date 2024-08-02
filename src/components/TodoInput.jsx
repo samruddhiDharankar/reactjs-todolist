@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 function TodoInput(props) {
   const { handleAddTodos, todoValue, setTodoValue } = props;
 
