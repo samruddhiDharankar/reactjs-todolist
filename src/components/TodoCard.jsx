@@ -11,12 +11,12 @@ function TodoCard(props) {
     todo,
   } = props;
 
-  useEffect(() => {
-    let newData = getData("checkbox");
-    if (newData) {
-      setCheckbox(newData);
-    }
-  }, []);
+  // useEffect(() => {
+  //   let newData = getData("checkbox");
+  //   if (newData) {
+  //     setCheckbox(newData);
+  //   }
+  // }, []);
 
   return (
     <div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 import { persistData, getData } from "./utils/localStorage";
+// import { v4 as uuid } from "uuid";
 
 function App() {
   const [todos, setTodos] = useState([]);
