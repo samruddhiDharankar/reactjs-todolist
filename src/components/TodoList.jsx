@@ -3,7 +3,9 @@ import TodoCard from "./TodoCard";
 
 function TodoList(props) {
   const { todos } = props;
-
+  if (!todos) {
+    return null;
+  }
   return (
     <ul className="main">
       {todos.map((todo, todoIndex) => {

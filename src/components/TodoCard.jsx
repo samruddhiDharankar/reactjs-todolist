@@ -1,6 +1,3 @@
-import React, { useEffect } from "react";
-import { persistData, getData } from "../utils/localStorage";
-
 function TodoCard(props) {
   const {
     children,
@@ -9,13 +6,6 @@ function TodoCard(props) {
     handleClickCheckbox,
     todo,
   } = props;
-
-  // useEffect(() => {
-  //   let newData = getData("checkbox");
-  //   if (newData) {
-  //     setCheckbox(newData);
-  //   }
-  // }, []);
 
   return (
     <div>

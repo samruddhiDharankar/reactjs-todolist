@@ -1,54 +1,17 @@
-import { useEffect, useState } from "react";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
-import { persistData, getData } from "./utils/localStorage";
-import { v4 as uuid } from "uuid";
+import useTodos from "./hooks/useTodo";
 
 function App() {
-  const [todos, setTodos] = useState([]);
-  const [todoValue, setTodoValue] = useState("");
-
-  function handleAddTodos(newTodo) {
-    let id = uuid();
-    const newTodoList = [...todos, { id: id, task: newTodo, completed: false }];
-    persistData("todos", { todos: newTodoList });
-    setTodos(newTodoList);
-  }
-
-  function handleDeleteTodos(index) {
-    const newTodoList = todos.filter((todo, todoIndex) => {
-      return todo.id !== index;
-    });
-    persistData("todos", { todos: newTodoList });
-    setTodos(newTodoList);
-  }
-
-  function handleEditTodos(index) {
-    const valueToBeEdited = todos.filter((todo) => {
-      return todo.id === index;
-    })[0].task;
-
-    setTodoValue(valueToBeEdited);
-    handleDeleteTodos(index);
-  }
-
-  function handleClickCheckbox(index) {
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === index) {
-        return { ...todo, completed: !todo.completed };
-      }
-      return todo;
-    });
-    persistData("todos", { todos: updatedTodos });
-    setTodos(updatedTodos);
-  }
-
-  useEffect(() => {
-    let localTodos = getData("todos");
-    if (localTodos) {
-      setTodos(localTodos.todos);
-    }
-  }, []);
+  const {
+    todos,
+    todoValue,
+    setTodoValue,
+    handleAddTodos,
+    handleDeleteTodos,
+    handleEditTodos,
+    handleClickCheckbox,
+  } = useTodos();
 
   return (
     <>

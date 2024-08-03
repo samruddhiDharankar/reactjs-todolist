@@ -17,7 +17,7 @@ function TodoInput(props) {
           setTodoValue(e.target.value);
         }}
         placeholder="Enter todo..."
-        onKeyPress={handleKeyPress}
+        onKeyUp={handleKeyPress}
       />
       <button
         onClick={() => {
