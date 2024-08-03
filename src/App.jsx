@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 import { persistData, getData } from "./utils/localStorage";
+import { v4 as uuid } from "uuid";
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [todoValue, setTodoValue] = useState("");
 
   function handleAddTodos(newTodo) {
-    const newTodoList = [...todos, newTodo];
+    let id = uuid();
+    const newTodoList = [...todos, { id: id, task: newTodo, completed: false }];
+    console.log(newTodoList);
     persistData("todos", { todos: newTodoList });
     setTodos(newTodoList);
   }
@@ -22,9 +25,20 @@ function App() {
   }
 
   function handleEditTodos(index) {
-    const valueToBeEdited = todos[index];
+    const valueToBeEdited = todos[index].task;
     setTodoValue(valueToBeEdited);
     handleDeleteTodos(index);
+  }
+
+  function handleClickCheckbox(index) {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === index) {
+        return { ...todo, completed: !todo.completed };
+      }
+      return todo;
+    });
+    persistData("todos", { todos: updatedTodos });
+    setTodos(updatedTodos);
   }
 
   useEffect(() => {
@@ -45,6 +59,7 @@ function App() {
         todos={todos}
         handleDeleteTodos={handleDeleteTodos}
         handleEditTodos={handleEditTodos}
+        handleClickCheckbox={handleClickCheckbox}
       />
     </>
   );

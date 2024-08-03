@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { persistData, getData } from "../utils/localStorage";
 
 function TodoCard(props) {
-  const { children, handleDeleteTodos, index, handleEditTodos } = props;
-  const [checkbox, setCheckbox] = useState({});
+  const {
+    children,
+    handleDeleteTodos,
 
+    handleEditTodos,
+    handleClickCheckbox,
+    todo,
+  } = props;
+  console.log("chil ", children);
   useEffect(() => {
     let newData = getData("checkbox");
     if (newData) {
@@ -12,37 +18,31 @@ function TodoCard(props) {
     }
   }, []);
 
-  function handleClickCheckbox(index) {
-    let newCheckbox = { ...checkbox, [index]: !checkbox[index] };
-    persistData("checkbox", newCheckbox);
-    setCheckbox(newCheckbox);
-  }
-
   return (
     <div>
       <li
         className="todoItem"
-        style={{ background: checkbox[index] ? "lightgreen" : "white" }}
+        style={{ background: todo.completed ? "lightgreen" : "white" }}
       >
         <input
           type="checkbox"
-          checked={checkbox[index]}
-          onClick={() => {
-            handleClickCheckbox(index);
+          checked={todo.completed}
+          onChange={() => {
+            handleClickCheckbox(todo.id);
           }}
         ></input>
         {children}
         <div className="actionsContainer">
           <button
             onClick={() => {
-              handleEditTodos(index);
+              handleEditTodos(todo.id);
             }}
           >
             <i className="fa-solid fa-pen-to-square"></i>
           </button>
           <button
             onClick={() => {
-              handleDeleteTodos(index);
+              handleDeleteTodos(todo.id);
             }}
           >
             <i className="fa-regular fa-trash-can"></i>
