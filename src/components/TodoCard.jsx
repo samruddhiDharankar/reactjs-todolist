@@ -5,7 +5,6 @@ function TodoCard(props) {
   const {
     children,
     handleDeleteTodos,
-
     handleEditTodos,
     handleClickCheckbox,
     todo,

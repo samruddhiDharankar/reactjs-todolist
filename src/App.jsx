@@ -17,14 +17,17 @@ function App() {
 
   function handleDeleteTodos(index) {
     const newTodoList = todos.filter((todo, todoIndex) => {
-      return todoIndex !== index;
+      return todo.id !== index;
     });
     persistData("todos", { todos: newTodoList });
     setTodos(newTodoList);
   }
 
   function handleEditTodos(index) {
-    const valueToBeEdited = todos[index].task;
+    const valueToBeEdited = todos.filter((todo) => {
+      return todo.id === index;
+    })[0].task;
+
     setTodoValue(valueToBeEdited);
     handleDeleteTodos(index);
   }
