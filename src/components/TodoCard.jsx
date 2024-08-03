@@ -21,7 +21,7 @@ function TodoCard(props) {
     <div>
       <li
         className="todoItem"
-        style={{ background: todo.completed ? "lightgreen" : "white" }}
+        style={{ background: todo.completed ? "#80ffa6" : "white" }}
       >
         <input
           type="checkbox"

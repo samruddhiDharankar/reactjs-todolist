@@ -19,7 +19,7 @@ button {
   display: flex;
   flex-direction: column;
   padding: 14px;
-  background: #eff6ff;
+  background: #befafb;
   gap: 14px;
 }
 
@@ -57,8 +57,7 @@ header button:hover {
 header button,
 header input {
   padding: 14px 18px;
-  border: none;
-  outline: none;
+  /* border: none; */
   background: white;
 }
 
