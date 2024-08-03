@@ -13,17 +13,8 @@ function TodoCard(props) {
   }, []);
 
   function handleClickCheckbox(index) {
-    console.log("check", checkbox); // Log the original checkbox object
-
     let newCheckbox = { ...checkbox, [index]: !checkbox[index] };
-    console.log("newcheck", newCheckbox); // Log the updated checkbox object
-    try {
-      persistData("checkbox", newCheckbox);
-      console.log("Data persisted successfully.");
-    } catch (error) {
-      console.error("Error persisting data:", error);
-    }
-
+    persistData("checkbox", newCheckbox);
     setCheckbox(newCheckbox);
   }
 
