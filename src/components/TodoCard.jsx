@@ -10,7 +10,7 @@ function TodoCard(props) {
     handleClickCheckbox,
     todo,
   } = props;
-  console.log("chil ", children);
+
   useEffect(() => {
     let newData = getData("checkbox");
     if (newData) {
